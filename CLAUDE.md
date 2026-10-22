@@ -113,7 +113,7 @@ Neuer Artikel: `hugo new content posts/<ordner>` erzeugt beide Sprachdateien mit
 | 3 Import | erledigt, 18 Artikel, 106 Code-Blöcke mit Sprache, alle alten URLs mit Weiterleitung |
 | 4 Design | erledigt und freigegeben |
 | 5 Deployment | erledigt. Repo öffentlich, Pages-Quelle "GitHub Actions", Deploy unter `https://gabrielkoehl.github.io/dbavonnebenan-site/`. Abnahme: 88 Seiten und 871 Dateien erreichbar, Suche (DE und EN) und Weiterleitungen funktionieren |
-| 6 Qualitätsprüfung | offen |
+| 6 Qualitätsprüfung | erledigt bis auf Lighthouse: `_import/redirect-check.md` ohne ungeklärte Lücken, alte Kategorie-URLs per Alias (`content/categories/*/_index.de.md`), 0 tote interne Links, hreflang bei allen 18 Artikeln, Sitemap, robots.txt und Verifizierungs-Tags vorhanden |
 | 7 Umschaltung | offen, nur als Checkliste für den Nutzer |
 
 ### Phase 6: Qualitätsprüfung vor der Umschaltung
