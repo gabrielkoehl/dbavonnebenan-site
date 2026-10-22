@@ -8,8 +8,9 @@ _import/wordpress-export.xml and original images from _import/uploads/.
 Usage (from repo root):
     python3 -I tools/import_posts.py [bundle ...]
 
-Without arguments all bundles listed in PAIRS are imported. Existing
-index.de.md / index.en.md files of the selected bundles are overwritten.
+Without arguments all bundles listed in PAIRS and all PAGES are imported.
+Existing index.de.md / index.en.md files of the selected bundles are
+overwritten; pages only get index.de.md, index.en.md stays untouched.
 A JSON log of findings is written to _import/import-log.json.
 """
 
@@ -65,6 +66,10 @@ PAIRS = {
         "psterminalperfcounter-counter-in-terminal-handson_en",
     ),
 }
+
+# WordPress pages, German only; English versions are maintained by hand
+PAGES = ("about", "impressum", "privacy-policy")
+PAGES_DIR = ROOT / "content"
 
 # old slug -> (bundle, lang)
 SLUG_MAP = {}
@@ -385,12 +390,8 @@ class Converter:
 
     @staticmethod
     def guess_language(code):
-        if code.lstrip().startswith(("{", "[")):
-            try:
-                json.loads(code)
-                return "json"
-            except ValueError:
-                pass
+        if code.lstrip().startswith(("{", "[")) and re.search(r'"\w+"\s*:', code):
+            return "json"
         if re.search(r"\b(select|insert|update|delete|create|alter|exec)\b.*\b(from|table|procedure|into)\b", code, re.I | re.S):
             return "sql"
         if re.search(r"\$\w+|\b(Get|Set|New|Invoke|Import|Install|Test|Start)-\w+", code):
@@ -509,9 +510,31 @@ def import_bundle(bundle, posts, cats, tags, attachments, report):
         report[f"{bundle}/{lang}"] = {"old_slug": old_slug, "images": sorted(conv.images), "log": log}
 
 
+def import_page(page, report):
+    page_dir = PAGES_DIR / page["slug"]
+    page_dir.mkdir(parents=True, exist_ok=True)
+    log = []
+    conv = Converter(page_dir, "de", log)
+    body = conv.convert(page["content"]["rendered"])
+    lines = [
+        "---",
+        f"title: {yaml_str(html.unescape(page['title']['rendered']))}",
+        f"date: {wp_date(page['date'])}",
+        f"lastmod: {wp_date(page['modified'])}",
+        "draft: false",
+        "hideMeta: true",
+        "ShowToc: false",
+        "ShowReadingTime: false",
+        "ShowPostNavLinks: false",
+        "---",
+    ]
+    (page_dir / "index.de.md").write_text("\n".join(lines) + "\n\n" + body, encoding="utf-8")
+    report[f"{page['slug']}/de"] = {"old_slug": page["slug"], "images": sorted(conv.images), "log": log}
+
+
 def main(argv):
-    selected = argv or list(PAIRS)
-    unknown = [b for b in selected if b not in PAIRS]
+    selected = argv or list(PAIRS) + list(PAGES)
+    unknown = [b for b in selected if b not in PAIRS and b not in PAGES]
     if unknown:
         sys.exit(f"unknown bundle(s): {', '.join(unknown)}")
     posts = {p["slug"]: p for p in load_json("posts.json")}
@@ -519,8 +542,12 @@ def main(argv):
     tags = {t["id"]: html.unescape(t["name"]) for t in load_json("tags.json")}
     attachments = load_attachments()
     report = {}
+    pages = {p["slug"]: p for p in load_json("pages.json")}
     for bundle in selected:
-        import_bundle(bundle, posts, cats, tags, attachments, report)
+        if bundle in PAGES:
+            import_page(pages[bundle], report)
+        else:
+            import_bundle(bundle, posts, cats, tags, attachments, report)
     log_file = IMPORT / "import-log.json"
     existing = json.loads(log_file.read_text(encoding="utf-8")) if log_file.exists() else {}
     existing.update(report)

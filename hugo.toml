@@ -42,7 +42,7 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
   ShowReadingTime = true
   ShowCodeCopyButtons = true
   ShowToc = true
-  TocOpen = true
+  TocOpen = false
   ShowPostNavLinks = true
   ShowBreadCrumbs = false
   ShowShareButtons = false
@@ -88,6 +88,9 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
   [languages.de.params]
     description = "Lach- und Sachgeschichten aus dem Alltag eines SQL-Server-Beraters. Wissen und Tipps zu T-SQL, PowerShell und Performance-Tuning."
     author = "Gabriel Köhl"
+
+    [languages.de.params.footer]
+      text = "[Impressum](/impressum/) · [Datenschutz](/privacy-policy/)"
 
   [[languages.de.menu.main]]
     identifier = "posts"
@@ -142,6 +145,9 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
   [languages.en.params]
     description = "Tales and tips from the daily life of a SQL Server consultant. T-SQL, PowerShell and performance tuning."
     author = "Gabriel Köhl"
+
+    [languages.en.params.footer]
+      text = "[Legal notice](/impressum/) · [Privacy policy](/privacy-policy/) (German)"
 
   [[languages.en.menu.main]]
     identifier = "posts"
