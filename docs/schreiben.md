@@ -46,6 +46,7 @@ Das Änderungsdatum (`lastmod`) ermittelt Hugo aus dem letzten Git-Commit der Da
 ## Obsidian-Einstellungen
 
 - Vault öffnen auf den Ordner `content/`.
+- Einstellungen, Editor: "Eigenschaften im Dokument" auf "Quelltext". Die Eigenschaften-Ansicht kann verschachtelte Einträge wie `cover` nicht bearbeiten (Anzeige `{}`). In der Quelltextansicht wird das Front Matter als YAML bearbeitet, Untereinträge mit zwei Leerzeichen eingerückt.
 - Einstellungen, Dateien und Links:
   - "Wikilinks verwenden": aus
   - "Neue Links im Format": relativer Pfad zur Datei
