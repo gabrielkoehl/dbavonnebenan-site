@@ -215,6 +215,19 @@
     margin: 0;
 }
 
+/* TOC in header colors */
+details.toc,
+[data-theme="dark"] details.toc {
+    background: var(--header-bg);
+    border-color: var(--header-bg);
+    color: var(--header-fg);
+}
+
+details.toc a,
+details.toc summary {
+    color: var(--header-fg);
+}
+
 /* no TOC: side block alone on the right */
 .post-intro-side:only-child {
     grid-column: 2;

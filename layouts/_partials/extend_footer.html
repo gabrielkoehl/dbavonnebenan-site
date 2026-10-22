@@ -1,0 +1,13 @@
+{{- /* Open external links and links inside article text in a new tab. */ -}}
+<script>
+  document.querySelectorAll('a[href]').forEach(function (a) {
+    var href = a.getAttribute('href');
+    if (!href || href.charAt(0) === '#') return;
+    var external = a.host && a.host !== location.host;
+    var inArticle = a.closest('.post-content') !== null;
+    if (external || inArticle) {
+      a.target = '_blank';
+      a.rel = 'noopener';
+    }
+  });
+</script>
