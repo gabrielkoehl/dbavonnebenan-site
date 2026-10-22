@@ -1,0 +1,272 @@
+/* ---------- layout widths and colors ---------- */
+
+:root {
+    --main-width: 1080px;
+    --nav-width: 1280px;
+    --header-height: 96px;
+    --header-bg: rgb(35, 43, 56);
+    --header-fg: rgb(229, 231, 235);
+    --list-bg: rgb(242, 243, 245);
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme="dark"] {
+    --header-bg: rgb(22, 24, 29);
+    --list-bg: var(--theme);
+    --card-shadow: none;
+}
+
+/* ---------- header: dark bar ---------- */
+
+.header {
+    background: var(--header-bg);
+}
+
+.header-nav {
+    align-items: center;
+}
+
+.header,
+.header a,
+.header button,
+.header .nav-sep {
+    color: var(--header-fg);
+}
+
+/* logo image only, the label text stays as link title */
+.logo > a {
+    font-size: 0;
+}
+
+/* white tile keeps the black logo outlines readable on the dark bar */
+.logo > a img {
+    height: 76px;
+    width: auto;
+    padding: 4px 8px;
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
+}
+
+#menu {
+    align-items: center;
+}
+
+#menu .active {
+    text-decoration-color: var(--header-fg);
+}
+
+@media (max-width: 768px) {
+    #menu {
+        flex-wrap: wrap;
+        white-space: normal;
+        column-gap: 1rem;
+        overflow-x: visible;
+        line-height: 2.5rem;
+    }
+}
+
+/* icon-only menu entries: GitHub, LinkedIn, Opitz Consulting */
+#menu a[href*="github.com"] span,
+#menu a[href*="linkedin.com"] span,
+#menu a[href*="opitz-consulting.com"] span {
+    font-size: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+#menu a[href*="github.com"] svg,
+#menu a[href*="linkedin.com"] svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* hide the external-link arrow next to icon entries */
+#menu a[href*="github.com"] > svg,
+#menu a[href*="linkedin.com"] > svg,
+#menu a[href*="opitz-consulting.com"] > svg {
+    display: none;
+}
+
+/* black logo file, inverted for the dark bar */
+#menu a[href*="opitz-consulting.com"] span::before {
+    content: "";
+    display: inline-block;
+    width: 34px;
+    height: 30px;
+    background: url("../../brand/opitz.png") center / contain no-repeat;
+    filter: invert(1);
+}
+
+/* ---------- home: slogan line ---------- */
+
+.list {
+    background: var(--list-bg);
+}
+
+.home-info {
+    min-height: 0;
+    margin: 0 0 var(--gap) 0;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.home-info .entry-header {
+    display: none;
+}
+
+.home-info .entry-content {
+    color: var(--secondary);
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* ---------- post list: cards with image left ---------- */
+
+.post-entry {
+    border: none;
+    box-shadow: var(--card-shadow);
+}
+
+.post-entry:has(.entry-cover) {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    column-gap: var(--gap);
+    padding: 0 var(--gap) 0 0;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+.post-entry:has(.entry-cover) .entry-cover {
+    grid-row: 1 / span 3;
+    margin: 0;
+    height: 100%;
+}
+
+.post-entry:has(.entry-cover) .entry-cover img {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-entry:has(.entry-cover) > :not(.entry-cover):not(.entry-link) {
+    grid-column: 2;
+}
+
+.post-entry:has(.entry-cover) .entry-header {
+    padding-top: var(--gap);
+}
+
+.post-entry:has(.entry-cover) .entry-footer {
+    padding-bottom: var(--gap);
+    align-self: end;
+}
+
+.post-entry:has(.entry-cover) .entry-content {
+    margin-bottom: 0.75rem;
+}
+
+@media (max-width: 600px) {
+    .post-entry:has(.entry-cover) {
+        grid-template-columns: 96px 1fr;
+        column-gap: 1rem;
+        padding-right: 1rem;
+        min-height: 0;
+    }
+
+    .post-entry:has(.entry-cover) .entry-cover {
+        height: auto;
+    }
+
+    .post-entry:has(.entry-cover) .entry-cover img {
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+}
+
+/* ---------- article cover: not full width ---------- */
+
+.post-single .entry-cover {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---------- emotes ---------- */
+
+/* ![alt](bild.png "emote"): small, right of the following paragraph */
+.post-content img[title="emote"] {
+    float: right;
+    width: 130px;
+    margin: 0 0 1rem 1.5rem;
+}
+
+/* ![alt](bild.png "emote-mitte"): small, centered, several in one line */
+.post-content img[title="emote-mitte"] {
+    display: inline-block;
+    width: 130px;
+    margin: 0 0.75rem;
+}
+
+.post-content p:has(> img[title="emote-mitte"]) {
+    text-align: center;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content hr,
+.post-content pre,
+.post-content .highlight {
+    clear: both;
+}
+
+@media (max-width: 600px) {
+    .post-content img[title="emote"],
+    .post-content img[title="emote-mitte"] {
+        width: 90px;
+    }
+}
+
+/* ---------- link cards: [Text](url "Beschreibung") ---------- */
+
+.post-content a[title] {
+    display: block;
+    margin: 1rem 0;
+    padding: 0.75rem 1rem 0.75rem 3.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--entry);
+    box-shadow: none;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+}
+
+.post-content a[title]::after {
+    content: attr(title);
+    display: block;
+    font-weight: 400;
+    font-size: 0.9em;
+    color: var(--secondary);
+}
+
+.post-content a[title]::before {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    top: 0.9rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: var(--secondary);
+    -webkit-mask: var(--card-icon) center / contain no-repeat;
+    mask: var(--card-icon) center / contain no-repeat;
+    --card-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/%3E%3C/svg%3E");
+}
+
+.post-content a[title][href*="github.com"]::before {
+    --card-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'/%3E%3C/svg%3E");
+}

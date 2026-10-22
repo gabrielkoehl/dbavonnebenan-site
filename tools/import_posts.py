@@ -125,7 +125,7 @@ class Converter:
 
     # ---------- images and links ----------
 
-    def image(self, img):
+    def image(self, img, title=None):
         src = img.get("src", "")
         alt = (img.get("alt") or "").strip()
         m = UPLOAD_URL.match(src)
@@ -143,7 +143,8 @@ class Converter:
             self.log.append(f"Namenskonflikt Bild: {rel}")
         shutil.copy2(source, target)
         self.images.add(name)
-        return f"![{self.escape_link_text(alt)}]({name})"
+        suffix = f' "{title}"' if title else ""
+        return f"![{self.escape_link_text(alt)}]({name}{suffix})"
 
     def link_target(self, href):
         href = html.unescape(href or "").strip()
@@ -271,7 +272,16 @@ class Converter:
             pre = el if name == "pre" else el.find("pre")
             return [self.code_block(pre)] if pre else []
         if "ub-styled-box" in classes:
-            return [self.quote(self.blocks(el))]
+            # "what to expect" box, replaced by the table of contents
+            return []
+        if "wp-block-columns" in classes:
+            return self.columns(el)
+        if "wp-block-group" in classes and "is-nowrap" in classes:
+            # side by side group: images row, or emote next to text
+            if self.only_images(el):
+                images = [self.image(img, "emote-mitte") for img in el.find_all("img")]
+                return [" ".join(i for i in images if i)]
+            return self.side_by_side(el.find_all(recursive=False))
         if name == "p":
             text = self.inline(el).strip()
             return [self.guard_block_start(text)] if text else []
@@ -300,6 +310,24 @@ class Converter:
         return self.blocks(el)
 
     @staticmethod
+    def only_images(el):
+        """True if the element holds images but no text."""
+        return bool(el.find("img")) and not el.get_text(strip=True)
+
+    def columns(self, el):
+        return self.side_by_side(el.find_all(class_="wp-block-column", recursive=False))
+
+    def side_by_side(self, parts):
+        # image-only parts become floated emotes placed before the text
+        images, text = [], []
+        for part in parts:
+            if self.only_images(part):
+                images.extend(self.image(img, "emote") for img in part.find_all("img"))
+            else:
+                text.extend(self.block(part))
+        return [i for i in images if i] + text
+
+    @staticmethod
     def guard_block_start(text):
         # prevent paragraphs from turning into headings, lists or rules
         if re.match(r"^(#{1,6}\s|[-+>]\s|\d+[.)]\s|={3,}|-{3,})", text):
@@ -312,7 +340,11 @@ class Converter:
         href = a.get("href", "") if a else ""
         title = title_el.get_text(" ", strip=True) if title_el else (a.get("title", "") if a else href)
         title = html.unescape(title) or href
-        return f"[{self.escape_text(title)}]({self.link_target(href)})"
+        summary_el = el.find(class_="vlp-link-summary")
+        summary = html.unescape(summary_el.get_text(" ", strip=True)) if summary_el else ""
+        summary = summary.replace('"', "'") or title
+        # a link with title renders as card (see custom.css)
+        return f'[{self.escape_text(title)}]({self.link_target(href)} "{summary}")'
 
     def code_block(self, pre):
         match = re.search(r"brush:\s*([\w-]+)", " ".join(pre.get("class", [])))
@@ -374,13 +406,19 @@ class Converter:
             if a is not None and a.find_parent("figure") is el:
                 out.append(self.anchor(a))
             else:
-                out.append(self.image(img))
+                out.append(self.image(img, "emote-mitte" if self.is_small(img) else None))
         caption = el.find("figcaption")
         if caption is not None:
             text = self.inline(caption).strip()
             if text:
                 out.append(f"*{text}*")
         return out
+
+    @staticmethod
+    def is_small(img):
+        """Images scaled down to a small fixed width in WordPress (emotes)."""
+        match = re.search(r"width:\s*(\d+)px", img.get("style", ""))
+        return bool(match) and int(match.group(1)) <= 200
 
     @staticmethod
     def quote(blocks):

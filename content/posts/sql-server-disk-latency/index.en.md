@@ -15,23 +15,17 @@ cover:
   relative: true
 ---
 
-> What’s available here?
->
-> - [DISKSPD Templates and Wrapper](#DISKSPD)
-> - [How can I display the latencies of individual database files?](#sqlfilestats)
-> - [Long-term analysis of latencies with snapDiskLatency](#snapdisk)
-
-[GitHub – gabrielkoehl/DBAScriptBox: Useful stuff for DBAs](https://github.com/gabrielkoehl/DBAScriptBox)
+[GitHub – gabrielkoehl/DBAScriptBox: Useful stuff for DBAs](https://github.com/gabrielkoehl/DBAScriptBox "Useful stuff for DBAs. Contribute to gabrielkoehl/DBAScriptBox development by creating an account on GitHub.")
 
 ## Intro
 
 Currently, I’m involved in a code review at a client. We’re examining not only the application but also all interfaces. This naturally includes the SQL Server landscape, which I set up at the beginning of the year.
 
+![](emote-4.png "emote")
+
 The result was more findings in my direction than expected, and I immediately felt challenged. I was able to refute most of it, some topics were the client’s responsibility, and one topic caught my interest purely out of curiosity.
 
 **Read- and Write Latencies of TempDB** ( and every other DB )
-
-![](emote-4.png)
 
 ## Background
 
@@ -68,9 +62,9 @@ select * from sys.dm_io_virtual_file_stats(null,null)
 
 Based on this, I built an analysis script that gives me more info and I can also draw further conclusions like ReadWrite Ratio, probable IOPS based on the number of operations, and also quantities. This allows you to build storage systems quite well for specific workloads.
 
-And this value also showed me 32ms Write Latency of the TempDB. Then I started wondering, how does this value even arise?
+![Question](emotes_question.png "emote")
 
-![Question](emotes_question.png)
+And this value also showed me 32ms Write Latency of the TempDB. Then I started wondering, how does this value even arise?
 
 ### Basic Calculation
 
@@ -126,7 +120,7 @@ Instead of possibly contaminated values:
 
 Create Agent Job, run hourly, done. The complete instructions are in the README, copy & paste & enjoy
 
-![happy](emotes_standing_1.png)
+![happy](emotes_standing_1.png "emote-mitte")
 
 ## Diagrams
 

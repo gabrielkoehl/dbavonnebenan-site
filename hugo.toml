@@ -42,6 +42,7 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
   ShowBreadCrumbs = false
   ShowShareButtons = false
   comments = false
+  disableSpecial1stPost = true
 
   [params.assets]
     favicon = "brand/favicon.png"
@@ -50,9 +51,9 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
     apple_touch_icon = "brand/apple-touch-icon.png"
 
   [params.label]
-    text = "DBA von Nebenan"
-    icon = "brand/logo.png"   # read from assets/, resized by the theme
-    iconHeight = 32
+    text = "DBA von Nebenan"   # hidden via CSS, kept as link title
+    icon = "brand/logo.png"    # static file, pre-sized to 3x iconHeight
+    iconHeight = 80
 
   # site verification (values taken from the live site head)
   [params.analytics.google]
@@ -80,16 +81,10 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
     description = "Lach- und Sachgeschichten aus dem Alltag eines SQL-Server-Beraters. Wissen und Tipps zu T-SQL, PowerShell und Performance-Tuning."
     author = "Gabriel Köhl"
 
+    # slogan line above the post list (title hidden via CSS)
     [languages.de.params.homeInfoParams]
-      Title = "DBA von Nebenan"
+      Title = ""
       Content = "Lach- und Sachgeschichten aus dem Alltag eines SQL-Server-Beraters."
-
-    [[languages.de.params.socialIcons]]
-      name = "github"
-      url = "https://github.com/gabrielkoehl"
-    [[languages.de.params.socialIcons]]
-      name = "linkedin"
-      url = "https://www.linkedin.com/in/gabrielkoehl/"
 
   [[languages.de.menu.main]]
     identifier = "posts"
@@ -116,6 +111,23 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
     name = "SqlServerBuilds (ext)"
     url = "https://sqlserverbuilds.blogspot.com"
     weight = 50
+  [[languages.de.menu.main]]
+    identifier = "github"
+    name = "GitHub"
+    url = "https://github.com/gabrielkoehl"
+    pre = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"> </path> </svg>'
+    weight = 60
+  [[languages.de.menu.main]]
+    identifier = "linkedin"
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/gabrielkoehl/"
+    pre = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect x="2" y="9" width="4" height="12"></rect> <circle cx="4" cy="4" r="2"></circle> </svg>'
+    weight = 70
+  [[languages.de.menu.main]]
+    identifier = "opitz"
+    name = "Opitz Consulting"
+    url = "https://opitz-consulting.com/"
+    weight = 80
 
 # Language: English
 [languages.en]
@@ -128,16 +140,10 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
     description = "Tales and tips from the daily life of a SQL Server consultant. T-SQL, PowerShell and performance tuning."
     author = "Gabriel Köhl"
 
+    # slogan line above the post list (title hidden via CSS)
     [languages.en.params.homeInfoParams]
-      Title = "DBA von Nebenan"
+      Title = ""
       Content = "Tales and tips from the daily life of a SQL Server consultant."
-
-    [[languages.en.params.socialIcons]]
-      name = "github"
-      url = "https://github.com/gabrielkoehl"
-    [[languages.en.params.socialIcons]]
-      name = "linkedin"
-      url = "https://www.linkedin.com/in/gabrielkoehl/"
 
   [[languages.en.menu.main]]
     identifier = "posts"
@@ -164,3 +170,20 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
     name = "SqlServerBuilds (ext)"
     url = "https://sqlserverbuilds.blogspot.com"
     weight = 50
+  [[languages.en.menu.main]]
+    identifier = "github"
+    name = "GitHub"
+    url = "https://github.com/gabrielkoehl"
+    pre = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"> </path> </svg>'
+    weight = 60
+  [[languages.en.menu.main]]
+    identifier = "linkedin"
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/gabrielkoehl/"
+    pre = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect x="2" y="9" width="4" height="12"></rect> <circle cx="4" cy="4" r="2"></circle> </svg>'
+    weight = 70
+  [[languages.en.menu.main]]
+    identifier = "opitz"
+    name = "Opitz Consulting"
+    url = "https://opitz-consulting.com/"
+    weight = 80
