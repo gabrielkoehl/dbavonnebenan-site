@@ -17,9 +17,7 @@ cover:
 
 # Intro
 
-**[psTerminalPerfCounter](https://github.com/gabrielkoehl/psTerminalPerfCounter)**
-
-![Solid black square placeholder with no visible content.](GitHub_Invertocat_Black.png "emote")
+[psTerminalPerfCounter](https://github.com/gabrielkoehl/psTerminalPerfCounter "github.com/gabrielkoehl/psTerminalPerfCounter")
 
 Knapp ein Jahr ist es nun her, dass ich mit der Entwicklung von psTerminalPerfCounter begann. Stolz auf die „grafische“ Implementierung, Sprachunabhängigkeit mittels 3rd-Party-Lib und den damaligen heiligen Gral: Klassen in PowerShell.
 

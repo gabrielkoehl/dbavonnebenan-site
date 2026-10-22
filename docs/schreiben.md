@@ -43,11 +43,15 @@ Entwürfe (`draft: true`) kommen nie auf `main`.
 
 | Schreibweise | Darstellung |
 |---|---|
+| `![Alt-Text](bild.png)` | Bild in Originalgröße, höchstens Textbreite, zentriert. |
+| `![Alt-Text](bild.png "breit")` | Bild auf volle Textbreite skaliert. |
 | `![Alt-Text](bild.png "emote")` | kleines Bild (130 px) zentriert. Mehrere in einer Zeile stehen nebeneinander. |
 | `[Linktext](https://url "Beschreibung")` | Link als Karte mit Icon und Beschreibung, GitHub-Links mit GitHub-Icon. |
 | Tabelle mit `{.layout}` in der Zeile direkt darunter | Tabelle ohne Linien und ohne Kopfzeile, z. B. Text links und Bild rechts. |
 
-Normale Links und Bilder ohne Titel in Anführungszeichen werden normal dargestellt.
+Normale Links ohne Titel in Anführungszeichen werden normal dargestellt.
+
+Das Titelbild (`cover.image`) erscheint in der Artikelliste und im Artikel links neben Kategorien, Tags und Inhaltsverzeichnis.
 
 Beispiel Layout-Tabelle. Die Kopfzeile bleibt leer, sie wird ausgeblendet. Die Spaltenbreite richtet sich nach dem Inhalt.
 

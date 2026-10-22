@@ -325,6 +325,17 @@ class Converter:
             self.log.append("Tabelle gefunden, manuell prüfen")
         return self.blocks(el)
 
+    def github_card(self, parts):
+        """GitHub logo next to a single GitHub link -> link card."""
+        logo = [p for p in parts if self.only_images(p) and p.find("img", src=re.compile(r"GitHub_"))]
+        rest = [p for p in parts if p not in logo]
+        links = [a for p in rest for a in p.find_all("a", href=re.compile(r"^https://github\.com/"))]
+        if len(logo) != 1 or len(links) != 1:
+            return None
+        href = links[0]["href"]
+        text = self.escape_text(links[0].get_text(" ", strip=True)) or href
+        return f'[{text}]({href} "{href.split("://", 1)[1]}")'
+
     @staticmethod
     def only_images(el):
         """True if the element holds images but no text."""
@@ -334,6 +345,9 @@ class Converter:
         return self.side_by_side(el.find_all(class_="wp-block-column", recursive=False))
 
     def side_by_side(self, parts):
+        card = self.github_card(parts)
+        if card:
+            return [card]
         # image-only parts become small centered emotes after the text
         images, text = [], []
         for part in parts:

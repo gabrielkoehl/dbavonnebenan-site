@@ -49,9 +49,6 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
   comments = false
   disableSpecial1stPost = true
 
-  [params.cover]
-    hiddenInSingle = true   # cover only in lists, articles start with the TOC
-
   [params.assets]
     favicon = "brand/favicon.png"
     favicon16x16 = "brand/favicon-32x32.png"

@@ -198,25 +198,42 @@
     }
 }
 
-/* ---------- article header: categories and tags ---------- */
+/* ---------- article intro: cover left, taxonomies and TOC right ---------- */
 
-/* meta line and translations on one line, taxonomies below */
-.post-single .post-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+.post-intro {
+    margin-bottom: var(--gap);
 }
 
-.post-single .post-meta .post-taxonomies {
-    order: 2;
-    flex-basis: 100%;
+.post-intro.has-cover {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    column-gap: var(--gap);
+    align-items: start;
+}
+
+.post-intro .entry-cover {
+    margin: 0;
+}
+
+.post-intro .entry-cover img {
+    border-radius: var(--radius);
+}
+
+.post-intro .toc {
+    margin: 0.75rem 0 0 0;
+}
+
+@media (max-width: 600px) {
+    .post-intro.has-cover {
+        grid-template-columns: 96px 1fr;
+        column-gap: 1rem;
+    }
 }
 
 .post-taxonomies {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-top: 0.6rem;
 }
 
 .post-taxonomies a {
@@ -234,16 +251,20 @@
     color: var(--header-fg);
 }
 
-/* shown in the article header only */
-.entry-footer .post-taxonomies,
-.post-footer .post-tags {
-    display: none;
-}
-
 /* ---------- article body ---------- */
 
 .post-content hr {
     margin: 2.5rem 0;
+}
+
+/* all content images centered */
+.post-single .md-content img {
+    margin: 1rem auto;
+}
+
+/* ![alt](bild.png "breit"): full text width */
+.post-content img[title="breit"] {
+    width: 100%;
 }
 
 /* ![alt](bild.png "emote"): small and centered, several in one line */

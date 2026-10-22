@@ -17,9 +17,7 @@ cover:
 
 # Intro
 
-**[psTerminalPerfCounter](https://github.com/gabrielkoehl/psTerminalPerfCounter)**
-
-![Solid black square placeholder with no visible content.](GitHub_Invertocat_Black.png "emote")
+[psTerminalPerfCounter](https://github.com/gabrielkoehl/psTerminalPerfCounter "github.com/gabrielkoehl/psTerminalPerfCounter")
 
 Im vorherigen Artikel habe ich einen kurzen Abriss in die [Geschichte und Funktionsweise](../windows-performance-counters-how-the-os-monitors-itself/index.de.md) der Windows Performance Counter gemacht, jetzt folgt das Hands-on. Grundlage ist Release 0.4.1, das ganz im Zeichen von Visualisierung und Datenexport steht. Neu dabei: CSV-Export, eine Terminal GUI als Ablösung der textbasierten Ansicht und der HTML-Export via PSWriteHTML. Klingt spannend… ist es auch 🙂 Ich denke das siehst du genau so, sonst würdest du nicht mehr lesen. 🙂
 
