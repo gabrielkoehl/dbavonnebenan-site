@@ -39,6 +39,16 @@ Der Ordnername ist gleichzeitig die URL: `content/posts/sql-server-tempdb/` wird
 
 Entwürfe (`draft: true`) kommen nie auf `main`.
 
+## Sonderformate
+
+| Schreibweise | Darstellung |
+|---|---|
+| `![Alt-Text](bild.png "emote")` | kleines Bild rechts, der folgende Absatz fließt links daneben. Das Bild vor den Absatz setzen. |
+| `![Alt-Text](bild.png "emote-mitte")` | kleines Bild zentriert. Mehrere in einer Zeile stehen nebeneinander. |
+| `[Linktext](https://url "Beschreibung")` | Link als Karte mit Icon und Beschreibung, GitHub-Links mit GitHub-Icon. |
+
+Normale Links und Bilder ohne Titel in Anführungszeichen werden normal dargestellt.
+
 ## Änderungsdatum
 
 Das Änderungsdatum (`lastmod`) ermittelt Hugo aus dem letzten Git-Commit der Datei. Steht `lastmod` explizit im Front Matter, hat dieser Wert Vorrang. Die importierten Artikel nutzen das, um ihr Datum aus WordPress zu behalten.
