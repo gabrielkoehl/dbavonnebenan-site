@@ -58,6 +58,9 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
     favicon16x16 = "brand/favicon-32x32.png"
     favicon32x32 = "brand/favicon-32x32.png"
     apple_touch_icon = "brand/apple-touch-icon.png"
+    safari_pinned_tab = "brand/safari-pinned-tab.svg"
+    theme_color = "#232b38"               # header background
+    msapplication_TileColor = "#232b38"
 
   [params.label]
     text = "DBA von Nebenan"   # hidden via CSS, kept as link title
