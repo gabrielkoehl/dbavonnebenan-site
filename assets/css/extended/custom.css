@@ -206,9 +206,9 @@
 
 .post-intro.has-side {
     display: grid;
-    grid-template-columns: 1fr 220px;
+    grid-template-columns: 1fr 240px;
     column-gap: var(--gap);
-    align-items: start;
+    align-items: center;   /* TOC and side block centered on each other */
 }
 
 .post-intro-toc .toc {
@@ -226,10 +226,6 @@
 
 .post-intro-side .entry-cover img {
     border-radius: var(--radius);
-}
-
-.post-intro-side .post-categories {
-    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 600px) {
@@ -255,17 +251,22 @@
     }
 }
 
+/* categories and tags as one cloud */
 .post-taxonomies {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 4px 6px;
+}
+
+.post-intro-side .post-taxonomies {
+    justify-content: center;
 }
 
 .post-taxonomies a {
-    font-size: 13px;
-    line-height: 26px;
-    padding: 0 10px;
-    border-radius: 13px;
+    font-size: 12px;
+    line-height: 22px;
+    padding: 0 8px;
+    border-radius: 11px;
     background: var(--code-bg);
     color: var(--secondary);
     text-decoration: none;

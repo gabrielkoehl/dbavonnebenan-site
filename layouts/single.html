@@ -44,16 +44,12 @@
     {{- if $hasSide }}
     <aside class="post-intro-side">
       {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" (not $hasCover)) }}
-      {{- with $cats }}
-      <div class="post-taxonomies post-categories">
-        {{- range . }}
+      {{- if or $cats $tags }}
+      <div class="post-taxonomies">
+        {{- range $cats }}
         <a class="post-category" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
         {{- end }}
-      </div>
-      {{- end }}
-      {{- with $tags }}
-      <div class="post-taxonomies">
-        {{- range . }}
+        {{- range $tags }}
         <a class="post-tag" href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
         {{- end }}
       </div>
