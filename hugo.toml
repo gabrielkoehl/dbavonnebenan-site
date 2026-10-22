@@ -1,0 +1,162 @@
+baseURL = "https://dbavonnebenan.de/"   # override with --baseURL for preview deployments
+title = "DBA von Nebenan"
+theme = "PaperMod"
+
+defaultContentLanguage = "de"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+enableGitInfo = true
+enableEmoji = false
+ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the build
+
+[pagination]
+  pagerSize = 10
+
+# Keep old article URLs: /<slug>/ instead of /posts/<slug>/
+[permalinks.page]
+  posts = "/:slug/"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]   # JSON feeds the PaperMod search
+
+[markup.highlight]
+  noClasses = false   # use CSS classes from the theme
+  lineNos = false
+  guessSyntax = false
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[params]
+  env = "production"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = false
+  ShowShareButtons = false
+  comments = false
+
+  [params.assets]
+    favicon = "brand/favicon.png"
+    favicon16x16 = "brand/favicon-32x32.png"
+    favicon32x32 = "brand/favicon-32x32.png"
+    apple_touch_icon = "brand/apple-touch-icon.png"
+
+  [params.label]
+    text = "DBA von Nebenan"
+    icon = "brand/logo.png"   # read from assets/, resized by the theme
+    iconHeight = 32
+
+  # site verification (values taken from the live site head)
+  [params.analytics.google]
+    SiteVerificationTag = "v5tYngBsjJHNV_q24JH2dv7uNtkgdKx1QdSQ0mIdbWw"
+  [params.analytics.bing]
+    SiteVerificationTag = "938f6c1e7ac08d7ea209c43c65b6a3a4"
+
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+# Language: German (default)
+[languages.de]
+  label = "Deutsch"
+  locale = "de-DE"
+  weight = 1
+  title = "DBA von Nebenan"
+
+  [languages.de.params]
+    description = "Lach- und Sachgeschichten aus dem Alltag eines SQL-Server-Beraters. Wissen und Tipps zu T-SQL, PowerShell und Performance-Tuning."
+    author = "Gabriel Köhl"
+
+    [languages.de.params.homeInfoParams]
+      Title = "DBA von Nebenan"
+      Content = "Lach- und Sachgeschichten aus dem Alltag eines SQL-Server-Beraters."
+
+    [[languages.de.params.socialIcons]]
+      name = "github"
+      url = "https://github.com/gabrielkoehl"
+    [[languages.de.params.socialIcons]]
+      name = "linkedin"
+      url = "https://www.linkedin.com/in/gabrielkoehl/"
+
+  [[languages.de.menu.main]]
+    identifier = "posts"
+    name = "Artikel"
+    url = "/posts/"
+    weight = 10
+  [[languages.de.menu.main]]
+    identifier = "categories"
+    name = "Kategorien"
+    url = "/categories/"
+    weight = 20
+  [[languages.de.menu.main]]
+    identifier = "search"
+    name = "Suche"
+    url = "/search/"
+    weight = 30
+  [[languages.de.menu.main]]
+    identifier = "about"
+    name = "Über mich"
+    url = "/about/"
+    weight = 40
+  [[languages.de.menu.main]]
+    identifier = "builds"
+    name = "SqlServerBuilds (ext)"
+    url = "https://sqlserverbuilds.blogspot.com"
+    weight = 50
+
+# Language: English
+[languages.en]
+  label = "English"
+  locale = "en-US"
+  weight = 2
+  title = "DBA von Nebenan"
+
+  [languages.en.params]
+    description = "Tales and tips from the daily life of a SQL Server consultant. T-SQL, PowerShell and performance tuning."
+    author = "Gabriel Köhl"
+
+    [languages.en.params.homeInfoParams]
+      Title = "DBA von Nebenan"
+      Content = "Tales and tips from the daily life of a SQL Server consultant."
+
+    [[languages.en.params.socialIcons]]
+      name = "github"
+      url = "https://github.com/gabrielkoehl"
+    [[languages.en.params.socialIcons]]
+      name = "linkedin"
+      url = "https://www.linkedin.com/in/gabrielkoehl/"
+
+  [[languages.en.menu.main]]
+    identifier = "posts"
+    name = "Articles"
+    url = "/posts/"
+    weight = 10
+  [[languages.en.menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    url = "/categories/"
+    weight = 20
+  [[languages.en.menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 30
+  [[languages.en.menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 40
+  [[languages.en.menu.main]]
+    identifier = "builds"
+    name = "SqlServerBuilds (ext)"
+    url = "https://sqlserverbuilds.blogspot.com"
+    weight = 50
