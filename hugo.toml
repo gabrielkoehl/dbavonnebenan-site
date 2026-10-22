@@ -10,6 +10,10 @@ enableEmoji = false
 capitalizeListTitles = false   # keep tag spelling as written
 ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the build
 
+# image cache inside cacheDir, kept between CI runs
+[caches.images]
+  dir = ":cacheDir/images"
+
 [pagination]
   pagerSize = 10
 
