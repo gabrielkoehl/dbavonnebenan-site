@@ -51,7 +51,7 @@ Entwürfe (`draft: true`) kommen nie auf `main`.
 
 Normale Links ohne Titel in Anführungszeichen werden normal dargestellt.
 
-Das Titelbild (`cover.image`) erscheint in der Artikelliste und im Artikel links neben Kategorien, Tags und Inhaltsverzeichnis.
+Das Titelbild (`cover.image`) erscheint in der Artikelliste und im Artikel rechts neben dem Inhaltsverzeichnis, darunter Kategorien und Tags.
 
 Beispiel Layout-Tabelle. Die Kopfzeile bleibt leer, sie wird ausgeblendet. Die Spaltenbreite richtet sich nach dem Inhalt.
 

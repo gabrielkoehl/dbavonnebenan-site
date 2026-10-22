@@ -198,35 +198,60 @@
     }
 }
 
-/* ---------- article intro: cover left, taxonomies and TOC right ---------- */
+/* ---------- article intro: TOC left; cover, categories and tags right ---------- */
 
 .post-intro {
     margin-bottom: var(--gap);
 }
 
-.post-intro.has-cover {
+.post-intro.has-side {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 1fr 220px;
     column-gap: var(--gap);
     align-items: start;
 }
 
-.post-intro .entry-cover {
+.post-intro-toc .toc {
     margin: 0;
 }
 
-.post-intro .entry-cover img {
+/* no TOC: side block alone on the right */
+.post-intro-side:only-child {
+    grid-column: 2;
+}
+
+.post-intro-side .entry-cover {
+    margin: 0 0 0.75rem 0;
+}
+
+.post-intro-side .entry-cover img {
     border-radius: var(--radius);
 }
 
-.post-intro .toc {
-    margin: 0.75rem 0 0 0;
+.post-intro-side .post-categories {
+    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 600px) {
-    .post-intro.has-cover {
+    .post-intro.has-side {
+        grid-template-columns: 1fr;
+    }
+
+    .post-intro-side {
+        order: -1;
+        display: grid;
         grid-template-columns: 96px 1fr;
         column-gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .post-intro-side .entry-cover {
+        grid-row: 1 / span 2;
+        margin: 0;
+    }
+
+    .post-intro-side:only-child {
+        grid-column: 1;
     }
 }
 

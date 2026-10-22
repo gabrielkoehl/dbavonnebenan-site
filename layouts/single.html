@@ -29,28 +29,37 @@
     </div>
     {{- end }}
   </header>
-  {{- /* Local change: cover left, categories, tags and TOC right */}}
+  {{- /* Local change: TOC left; cover, categories and tags right */}}
   {{- $cats := .GetTerms "categories" }}
   {{- $tags := .GetTerms "tags" }}
   {{- $hasCover := and .Params.cover.image (not (.Param "cover.hidden")) }}
-  {{- if or $hasCover $cats $tags (.Param "ShowToc") }}
-  <div class="post-intro{{ if $hasCover }} has-cover{{ end }}">
-    {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" (not $hasCover)) }}
-    <div class="post-intro-side">
-      {{- if or $cats $tags }}
-      <div class="post-taxonomies">
-        {{- range $cats }}
+  {{- $hasSide := or $hasCover $cats $tags }}
+  {{- if or $hasSide (.Param "ShowToc") }}
+  <div class="post-intro{{ if $hasSide }} has-side{{ end }}">
+    {{- if (.Param "ShowToc") }}
+    <div class="post-intro-toc">
+      {{- partial "toc.html" . }}
+    </div>
+    {{- end }}
+    {{- if $hasSide }}
+    <aside class="post-intro-side">
+      {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" (not $hasCover)) }}
+      {{- with $cats }}
+      <div class="post-taxonomies post-categories">
+        {{- range . }}
         <a class="post-category" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
         {{- end }}
-        {{- range $tags }}
+      </div>
+      {{- end }}
+      {{- with $tags }}
+      <div class="post-taxonomies">
+        {{- range . }}
         <a class="post-tag" href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
         {{- end }}
       </div>
       {{- end }}
-      {{- if (.Param "ShowToc") }}
-      {{- partial "toc.html" . }}
-      {{- end }}
-    </div>
+    </aside>
+    {{- end }}
   </div>
   {{- end }}
 
