@@ -16,6 +16,10 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
 [permalinks.page]
   posts = "/:slug/"
 
+# Explicit lastmod (imported articles) wins over the git commit date
+[frontmatter]
+  lastmod = ["lastmod", ":git", "date"]
+
 [outputs]
   home = ["HTML", "RSS", "JSON"]   # JSON feeds the PaperMod search
 
