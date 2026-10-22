@@ -7,6 +7,7 @@ defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 enableGitInfo = true
 enableEmoji = false
+capitalizeListTitles = false   # keep tag spelling as written
 ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the build
 
 [pagination]
@@ -28,6 +29,10 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
   lineNos = false
   guessSyntax = false
 
+# allows {.layout} below a table for a borderless layout table
+[markup.goldmark.parser.attribute]
+  block = true
+
 [markup.goldmark.renderer]
   unsafe = false
 
@@ -37,12 +42,15 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
   ShowReadingTime = true
   ShowCodeCopyButtons = true
   ShowToc = true
-  TocOpen = false
+  TocOpen = true
   ShowPostNavLinks = true
   ShowBreadCrumbs = false
   ShowShareButtons = false
   comments = false
   disableSpecial1stPost = true
+
+  [params.cover]
+    hiddenInSingle = true   # cover only in lists, articles start with the TOC
 
   [params.assets]
     favicon = "brand/favicon.png"
@@ -80,11 +88,6 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
   [languages.de.params]
     description = "Lach- und Sachgeschichten aus dem Alltag eines SQL-Server-Beraters. Wissen und Tipps zu T-SQL, PowerShell und Performance-Tuning."
     author = "Gabriel Köhl"
-
-    # slogan line above the post list (title hidden via CSS)
-    [languages.de.params.homeInfoParams]
-      Title = ""
-      Content = "Lach- und Sachgeschichten aus dem Alltag eines SQL-Server-Beraters."
 
   [[languages.de.menu.main]]
     identifier = "posts"
@@ -139,11 +142,6 @@ ignoreFiles = ['\.obsidian', '\.canvas$']   # keep Obsidian metadata out of the 
   [languages.en.params]
     description = "Tales and tips from the daily life of a SQL Server consultant. T-SQL, PowerShell and performance tuning."
     author = "Gabriel Köhl"
-
-    # slogan line above the post list (title hidden via CSS)
-    [languages.en.params.homeInfoParams]
-      Title = ""
-      Content = "Tales and tips from the daily life of a SQL Server consultant."
 
   [[languages.en.menu.main]]
     identifier = "posts"

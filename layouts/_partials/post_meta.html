@@ -1,0 +1,39 @@
+{{- $meta := slice }}
+
+{{- if not .Date.IsZero -}}
+    {{- $meta = $meta | append (printf "<span title='%s'>%s</span>" (.Date | time.Format "2006-01-02T15:04:05-07:00") (.Date | time.Format (default ":date_long" site.Params.DateFormat))) }}
+{{- end }}
+
+{{- if (.Param "ShowReadingTime") -}}
+    {{- $meta = $meta | append (printf "<span>%s</span>" (i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime))) }}
+{{- end }}
+
+{{- if (.Param "ShowWordCount") -}}
+    {{- $meta = $meta | append (printf "<span>%s</span>" (i18n "words" .WordCount | default (printf "%d words" .WordCount))) }}
+{{- end }}
+
+{{- if not (.Param "hideAuthor") -}}
+    {{- with (partial "author.html" .) }}
+        {{- $meta = $meta | append (printf "<span>%s</span>" .) }}
+    {{- end }}
+{{- end }}
+
+{{/* Combine all meta information into a single string with separators and render it as HTML.*/}}
+
+{{- with $meta }}
+    {{- delimit . "&nbsp;·&nbsp;" | safeHTML -}}
+{{- end -}}
+
+{{- /* Local addition: categories and tags below the meta line (hidden in lists via custom.css). */}}
+{{- $cats := .GetTerms "categories" }}
+{{- $tags := .GetTerms "tags" }}
+{{- if or $cats $tags }}
+<div class="post-taxonomies">
+    {{- range $cats }}
+    <a class="post-category" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+    {{- end }}
+    {{- range $tags }}
+    <a class="post-tag" href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
+    {{- end }}
+</div>
+{{- end }}

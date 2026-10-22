@@ -21,11 +21,11 @@ cover:
 
 Aktuell bin ich bei einem Kunden an einem Code Review beteiligt. Dabei beleuchten wir neben der Applikation auch alle Schnittstellen.. Dazu gehört natürlich auch die Sql Server Landschaft, welche ich Anfang des Jahres aufgesetzt habe.
 
-![](emote-4.png "emote")
-
 Das Ergebnis waren doch mehr Findings in meine Richtung als erwartet und ich fühlte mich sofort gechallenged. Das Meiste konnte ich widerlegen, bei einigen Themen war der Kunde in der Pflicht und ein Thema hat mich rein interessenhalber gepackt.
 
 **Read- und Write Latenzen der TempDB** ( und jeder anderen DB )
+
+![](emote-4.png "emote")
 
 ## Vorgeschichte
 
@@ -62,9 +62,9 @@ select * from sys.dm_io_virtual_file_stats(null,null)
 
 Darauf basierend habe ich ein Analyse Script gebaut, welches mir mehr Infos gibt und ich auch weitere Rückschlüsse wie ReadWrite Ratio, wahrscheinliche IOPS auf Basis der Anzahl der Vorgänge und auch Mengen. Damit kann man schon ganz gut Storage Systeme zu speziellen Workloads aufbauen.
 
-![Question](emotes_question.png "emote")
-
 Und auch dieser Wert hat mir 32ms Write Latency der TempDB angezeigt. Dann habe ich angefangen mich zu fragen, wie entstehet dieser Wert überhaupt?
+
+![Question](emotes_question.png "emote")
 
 ### Grundlegende Berechnung der Werte
 
@@ -120,7 +120,7 @@ Statt möglicherweise verunreinigten Werten
 
 Agent Job erstellen, stündlich laufen lassen, fertig. Die komplette Anleitung steht in der README, copy & paste & freuen
 
-![happy](emotes_standing_1.png "emote-mitte")
+![happy](emotes_standing_1.png "emote")
 
 ## Diagramme
 

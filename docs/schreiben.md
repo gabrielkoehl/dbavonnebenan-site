@@ -43,11 +43,20 @@ Entwürfe (`draft: true`) kommen nie auf `main`.
 
 | Schreibweise | Darstellung |
 |---|---|
-| `![Alt-Text](bild.png "emote")` | kleines Bild rechts, der folgende Absatz fließt links daneben. Das Bild vor den Absatz setzen. |
-| `![Alt-Text](bild.png "emote-mitte")` | kleines Bild zentriert. Mehrere in einer Zeile stehen nebeneinander. |
+| `![Alt-Text](bild.png "emote")` | kleines Bild (130 px) zentriert. Mehrere in einer Zeile stehen nebeneinander. |
 | `[Linktext](https://url "Beschreibung")` | Link als Karte mit Icon und Beschreibung, GitHub-Links mit GitHub-Icon. |
+| Tabelle mit `{.layout}` in der Zeile direkt darunter | Tabelle ohne Linien und ohne Kopfzeile, z. B. Text links und Bild rechts. |
 
 Normale Links und Bilder ohne Titel in Anführungszeichen werden normal dargestellt.
+
+Beispiel Layout-Tabelle. Die Kopfzeile bleibt leer, sie wird ausgeblendet. Die Spaltenbreite richtet sich nach dem Inhalt.
+
+```markdown
+| | |
+|---|---|
+| Text des Absatzes ... | ![](emote.png "emote") |
+{.layout}
+```
 
 ## Änderungsdatum
 

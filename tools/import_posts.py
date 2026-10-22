@@ -277,9 +277,9 @@ class Converter:
         if "wp-block-columns" in classes:
             return self.columns(el)
         if "wp-block-group" in classes and "is-nowrap" in classes:
-            # side by side group: images row, or emote next to text
+            # side by side group: images row, or text followed by emote
             if self.only_images(el):
-                images = [self.image(img, "emote-mitte") for img in el.find_all("img")]
+                images = [self.image(img, "emote") for img in el.find_all("img")]
                 return [" ".join(i for i in images if i)]
             return self.side_by_side(el.find_all(recursive=False))
         if name == "p":
@@ -318,14 +318,15 @@ class Converter:
         return self.side_by_side(el.find_all(class_="wp-block-column", recursive=False))
 
     def side_by_side(self, parts):
-        # image-only parts become floated emotes placed before the text
+        # image-only parts become small centered emotes after the text
         images, text = [], []
         for part in parts:
             if self.only_images(part):
                 images.extend(self.image(img, "emote") for img in part.find_all("img"))
             else:
                 text.extend(self.block(part))
-        return [i for i in images if i] + text
+        images = [i for i in images if i]
+        return text + ([" ".join(images)] if images else [])
 
     @staticmethod
     def guard_block_start(text):
@@ -406,7 +407,7 @@ class Converter:
             if a is not None and a.find_parent("figure") is el:
                 out.append(self.anchor(a))
             else:
-                out.append(self.image(img, "emote-mitte" if self.is_small(img) else None))
+                out.append(self.image(img, "emote" if self.is_small(img) else None))
         caption = el.find("figcaption")
         if caption is not None:
             text = self.inline(caption).strip()

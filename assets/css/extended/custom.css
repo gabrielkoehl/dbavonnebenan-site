@@ -97,29 +97,10 @@
     filter: invert(1);
 }
 
-/* ---------- home: slogan line ---------- */
+/* ---------- post list background ---------- */
 
 .list {
     background: var(--list-bg);
-}
-
-.home-info {
-    min-height: 0;
-    margin: 0 0 var(--gap) 0;
-    padding: 0;
-    background: none;
-    border: none;
-    box-shadow: none;
-}
-
-.home-info .entry-header {
-    display: none;
-}
-
-.home-info .entry-content {
-    color: var(--secondary);
-    font-size: 1.1rem;
-    font-style: italic;
 }
 
 /* ---------- post list: cards with image left ---------- */
@@ -187,48 +168,90 @@
     }
 }
 
-/* ---------- article cover: not full width ---------- */
+/* ---------- article header: categories and tags ---------- */
 
-.post-single .entry-cover {
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
+/* meta line and translations on one line, taxonomies below */
+.post-single .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-/* ---------- emotes ---------- */
+.post-single .post-meta .post-taxonomies {
+    order: 2;
+    flex-basis: 100%;
+}
 
-/* ![alt](bild.png "emote"): small, right of the following paragraph */
+.post-taxonomies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.6rem;
+}
+
+.post-taxonomies a {
+    font-size: 13px;
+    line-height: 26px;
+    padding: 0 10px;
+    border-radius: 13px;
+    background: var(--code-bg);
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.post-taxonomies a.post-category {
+    background: var(--header-bg);
+    color: var(--header-fg);
+}
+
+/* shown in the article header only */
+.entry-footer .post-taxonomies,
+.post-footer .post-tags {
+    display: none;
+}
+
+/* ---------- article body ---------- */
+
+.post-content hr {
+    margin: 2.5rem 0;
+}
+
+/* ![alt](bild.png "emote"): small and centered, several in one line */
 .post-content img[title="emote"] {
-    float: right;
-    width: 130px;
-    margin: 0 0 1rem 1.5rem;
-}
-
-/* ![alt](bild.png "emote-mitte"): small, centered, several in one line */
-.post-content img[title="emote-mitte"] {
     display: inline-block;
     width: 130px;
     margin: 0 0.75rem;
 }
 
-.post-content p:has(> img[title="emote-mitte"]) {
+.post-content p:has(> img[title="emote"]) {
     text-align: center;
 }
 
-.post-content h1,
-.post-content h2,
-.post-content h3,
-.post-content hr,
-.post-content pre,
-.post-content .highlight {
-    clear: both;
-}
-
 @media (max-width: 600px) {
-    .post-content img[title="emote"],
-    .post-content img[title="emote-mitte"] {
+    .post-content img[title="emote"] {
         width: 90px;
     }
+}
+
+/* table followed by {.layout}: no lines, no header, for side by side content */
+.post-single .md-content table.layout,
+.post-single .md-content table.layout th,
+.post-single .md-content table.layout td {
+    border: none;
+    background: none;
+}
+
+.post-single .md-content table.layout thead {
+    display: none;
+}
+
+.post-single .md-content table.layout td {
+    vertical-align: middle;
+    padding: 0.5rem 1rem 0.5rem 0;
+}
+
+.post-single .md-content table.layout td img {
+    margin: 0 auto;
 }
 
 /* ---------- link cards: [Text](url "Beschreibung") ---------- */
