@@ -206,7 +206,12 @@ class Converter:
             elif name == "del":
                 parts.append(self.wrap(self.inline(child), "~~"))
             elif name == "code":
-                parts.append(self.code_span(child.get_text()))
+                link = child.find("a")
+                if link is not None and link.get("href"):
+                    # <code><a>x</a></code> -> linked code span
+                    parts.append(f"[{self.code_span(child.get_text())}]({self.link_target(link['href'])})")
+                else:
+                    parts.append(self.code_span(child.get_text()))
             elif name == "a":
                 parts.append(self.anchor(child))
             elif name == "img":
@@ -238,7 +243,11 @@ class Converter:
             if UPLOAD_URL.match(href) or SITE_URL.match(href):
                 return images
             return f"[{images}]({self.link_target(href)})"
-        text = self.inline(a).strip()
+        if a.find("code"):
+            # mixed code/text link text -> one code span
+            text = self.code_span(a.get_text()) if a.get_text().strip() else ""
+        else:
+            text = self.inline(a).strip()
         href = a.get("href")
         if not href:
             return text
@@ -283,7 +292,9 @@ class Converter:
                 return [" ".join(i for i in images if i)]
             return self.side_by_side(el.find_all(recursive=False))
         if name == "p":
-            text = self.inline(el).strip()
+            text = self.merge_links(self.inline(el).strip())
+            # icon line break: "⚒️<br>code" -> "⚒️ code"
+            text = re.sub(r"^([^\w\s\\\[`*]{1,3})  \n", r"\1 ", text)
             return [self.guard_block_start(text)] if text else []
         if re.fullmatch(r"h[1-6]", name):
             text = self.inline(el).strip()
@@ -327,6 +338,16 @@ class Converter:
                 text.extend(self.block(part))
         images = [i for i in images if i]
         return text + ([" ".join(images)] if images else [])
+
+    @staticmethod
+    def merge_links(text):
+        """Join adjacent links with the same target, e.g. [`a`](u)[`.`md](u)."""
+        pattern = re.compile(r"\[`([^`\]]+)`\]\(([^)\s]+)\)\[`([^`\]]+)`\]\(\2\)")
+        while True:
+            merged = pattern.sub(lambda m: f"[`{m.group(1)}{m.group(3)}`]({m.group(2)})", text)
+            if merged == text:
+                return text
+            text = merged
 
     @staticmethod
     def guard_block_start(text):

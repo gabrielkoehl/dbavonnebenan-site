@@ -2,7 +2,7 @@
 
 :root {
     --main-width: 1080px;
-    --nav-width: 1280px;
+    --nav-width: var(--main-width);   /* header content aligned with the text column */
     --header-height: 96px;
     --header-bg: rgb(35, 43, 56);
     --header-fg: rgb(229, 231, 235);
@@ -53,6 +53,36 @@
 
 #menu .active {
     text-decoration-color: var(--header-fg);
+}
+
+/* desktop: logo left, icons centered, text menu right */
+@media (min-width: 769px) {
+    .header-nav {
+        justify-content: flex-start;
+    }
+
+    #menu {
+        display: contents;
+    }
+
+    #menu li {
+        order: 2;
+        list-style: none;
+    }
+
+    #menu li:has(a[href*="github.com"]),
+    #menu li:has(a[href*="linkedin.com"]),
+    #menu li:has(a[href*="opitz-consulting.com"]) {
+        order: 1;
+    }
+
+    #menu li:has(a[href*="github.com"]) {
+        margin-left: auto;
+    }
+
+    #menu li:has(a[href*="opitz-consulting.com"]) {
+        margin-right: auto;
+    }
 }
 
 @media (max-width: 768px) {
