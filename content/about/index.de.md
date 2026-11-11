@@ -35,6 +35,6 @@ Natürlich nutze ich KI-Tools. Sie machen mich effizienter. Aber bis neues Wisse
 
 ## Kontakt
 
-Fragen, Feedback oder einfach Fachsimpeln? LinkedIn oder Mail – ich höre gern von dir.  
+Fragen, Feedback oder einfach Fachsimpeln? LinkedIn oder GitHub – ich höre gern von dir.  
   
 Du hast SQL Server Herausforderungen im Business-Umfeld oder möchtest Prozesse automatisieren? Schau gern bei **[Opitz Consulting](https://opitz-consulting.com/)** vorbei – dort bin ich buchbar.

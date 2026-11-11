@@ -35,6 +35,6 @@ Of course I use AI tools. They make me more efficient. But it takes time until n
 
 ## Contact
 
-Questions, feedback or just talking shop? LinkedIn or mail – I'd love to hear from you.
+Questions, feedback or just talking shop? LinkedIn or GitHub – I'd love to hear from you.
 
 Do you have SQL Server challenges in a business environment or want to automate processes? Feel free to drop by **[Opitz Consulting](https://opitz-consulting.com/)** – that's where you can book me.
