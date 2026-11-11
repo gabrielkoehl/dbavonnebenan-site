@@ -1,7 +1,7 @@
 ---
 title: "Impressum"
 date: 2025-05-18T19:42:07+02:00
-lastmod: 2025-05-18T19:42:07+02:00
+lastmod: 2026-11-11T12:00:00+01:00
 draft: false
 hideMeta: true
 ShowToc: false
@@ -19,7 +19,8 @@ Dieser Blog wird als privates, nicht-kommerzielles Projekt betrieben. Es werden 
 
 **Kontakt**
 
-- gabriel@dbavonnebenan.de
+- LinkedIn: [linkedin.com/in/gabrielkoehl](https://www.linkedin.com/in/gabrielkoehl/)
+- GitHub: [github.com/gabrielkoehl](https://github.com/gabrielkoehl)
 
 **Verantwortlich für Inhalte**
 

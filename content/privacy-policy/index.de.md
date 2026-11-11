@@ -40,5 +40,5 @@ ShowPostNavLinks: false
 
 **Deine Rechte**
 
-- Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch (Art. 15 bis 21 DSGVO). Kontakt über die im Impressum genannte E-Mail-Adresse.
+- Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch (Art. 15 bis 21 DSGVO). Kontakt über die im [Impressum](/impressum/) genannten Wege (LinkedIn oder GitHub).
 - Du hast außerdem das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO).
