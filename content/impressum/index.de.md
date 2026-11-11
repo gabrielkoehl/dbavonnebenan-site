@@ -7,6 +7,8 @@ hideMeta: true
 ShowToc: false
 ShowReadingTime: false
 ShowPostNavLinks: false
+searchHidden: true
+hiddenInRss: true
 ---
 
 **Hinweis zur Impressumspflicht**
@@ -19,7 +21,7 @@ Dieser Blog wird als privates, nicht-kommerzielles Projekt betrieben. Es werden 
 
 **Kontakt**
 
-- E-Mail: dbavonnebenan@gmail.com
+- E-Mail: {{< email "dbavonnebenan" "gmail.com" >}}
 - LinkedIn: [linkedin.com/in/gabrielkoehl](https://www.linkedin.com/in/gabrielkoehl/)
 - GitHub: [github.com/gabrielkoehl](https://github.com/gabrielkoehl)
 

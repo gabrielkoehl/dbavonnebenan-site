@@ -1,0 +1,26 @@
+{{- /*
+  Obfuscated e-mail address: {{< email "user" "domain.tld" >}}
+  The HTML only contains the base64-encoded address. A button reveals it as a
+  mailto link via JavaScript. Without JavaScript a spelled-out form is shown.
+*/ -}}
+{{- $user := .Get 0 -}}
+{{- $domain := .Get 1 -}}
+{{- $encoded := printf "%s@%s" $user $domain | base64Encode -}}
+<span class="email-reveal" data-m="{{ $encoded }}">
+  <button type="button" class="email-reveal-button">E-Mail-Adresse anzeigen</button>
+  <noscript>{{ $user }} (at) {{ replace $domain "." " (punkt) " }}</noscript>
+</span>
+{{- if not (.Page.Store.Get "emailRevealScript") -}}
+{{- .Page.Store.Set "emailRevealScript" true -}}
+<script>
+  document.querySelectorAll('.email-reveal').forEach(function (el) {
+    el.querySelector('button').addEventListener('click', function () {
+      var addr = atob(el.dataset.m);
+      var a = document.createElement('a');
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+      el.replaceChildren(a);
+    });
+  });
+</script>
+{{- end -}}

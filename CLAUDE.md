@@ -47,6 +47,7 @@ dbavonnebenan-site/
   assets/css/extended/custom.css               # all design changes
   layouts/single.html                          # copy of PaperMod single.html, "Local change" marked
   layouts/_partials/extend_footer.html         # opens external and article links in a new tab
+  layouts/_shortcodes/email.html               # obfuscated e-mail, revealed on click
   content/                                     # Obsidian vault root
     posts/<bundle>/index.de.md, index.en.md, Bilder
     about/index.de.md, index.en.md
